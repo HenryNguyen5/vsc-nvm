@@ -7,8 +7,19 @@
     "vscode": "^1.31.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Programming Languages"
   ],
+  "keywords": [
+    "nvm",
+    "nvmrc",
+    "vscode-nvm",
+    "vsc-nvm",
+    "node-version",
+    "NVM"
+  ],
+  "icon": "images/nvm-1080.png",
+  "bugs": "https://github.com/HenryNguyen5/vsc-nvm/issues",
   "activationEvents": [
     "onCommand:extension.node-version",
     "workspaceContains:.nvmrc"
