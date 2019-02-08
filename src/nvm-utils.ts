@@ -1,14 +1,17 @@
 import { promisify } from "util";
 import { exec } from "child_process";
+import { join } from "path";
 const execAsync = promisify(exec);
 
 import * as vscode from "vscode";
 
 export async function getNodeVersions(
-  ctx: vscode.ExtensionContext
+  ctx: vscode.ExtensionContext,
+  nvmDir?: string
 ): Promise<Array<string> | null> {
   try {
-    const { stdout } = await execAsync("ls ~/.nvm/versions/node");
+    const nvmCmd = join(nvmDir || "~/.nvm", "/versions/node");
+    const { stdout } = await execAsync(`ls ${nvmCmd}`);
     const versions = stdout
       .split("\n")
       .map(s => s.trim())

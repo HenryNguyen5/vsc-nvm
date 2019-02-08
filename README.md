@@ -1,48 +1,76 @@
-# vsc-node-version README
+# vsc-nvm README
 
-This is the README for your extension "vsc-node-version". After writing up a brief description, we recommend including the following sections.
+Simplyify your node versioning workflow with `nvm` and this extension.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+This extension simplifies nvm workflow by:
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- Automatically running `nvm use` on each terminal opened when an `.nvmrc` file exists in your workspace
+- Providing a [command input hook](https://code.visualstudio.com/updates/v1_31#_custom-command-user-input-variables) to choose a version of node to run tasks against
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- To be able to pick different node versions, you must have [nvm](https://github.com/creationix/nvm) installed
+- To have `nvm use` executed on terminal startup, you must have [nvm](https://github.com/creationix/nvm) installed along with a `.nvmrc` file in your workspace
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### Running a task with a choosable node version
 
-For example:
+```json
+// launch.json for running version picker with defaults
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest Current File",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": ["--detectOpenHandles", "${relativeFile}"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/${input:pickVersion}/bin/node"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "pickVersion",
+      "type": "command",
+      "command": "extension.node-version"
+    }
+  ]
+}
+```
 
-This extension contributes the following settings:
+### Running a task with a choosable node version in a custom nvm directory
 
-- `myExtension.enable`: enable/disable this extension
-- `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+```json
+// launch.json for running version picker with specified nvm dir
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest Current File",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": ["--detectOpenHandles", "${relativeFile}"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/${input:pickVersion}/bin/node"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "pickVersion",
+      "type": "command",
+      "command": "extension.node-version",
+      "args": {
+        "nvmDir": "/my/home/.nvm"
+      }
+    }
+  ]
+}
+```

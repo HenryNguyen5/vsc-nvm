@@ -12,8 +12,8 @@ export function activate(ctx: vscode.ExtensionContext) {
   useNvm();
   const disposable = vscode.commands.registerCommand(
     "extension.node-version",
-    async () => {
-      const versions = await getNodeVersions(ctx);
+    async ({ nvmDir }: { nvmDir?: string }) => {
+      const versions = await getNodeVersions(ctx, nvmDir);
       if (!versions) {
         vscode.window.showErrorMessage(
           "Could not find any installed nodejs versions"
