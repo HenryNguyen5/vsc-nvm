@@ -10,18 +10,23 @@ export function activate(ctx: vscode.ExtensionContext) {
   // The commandId parameter must match the command field in package.json
 
   useNvm();
+  type Args = { nvmDir?: string };
   const disposable = vscode.commands.registerCommand(
     "extension.node-version",
-    async ({ nvmDir }: { nvmDir?: string }) => {
-      const versions = await getNodeVersions(ctx, nvmDir);
-      if (!versions) {
-        vscode.window.showErrorMessage(
-          "Could not find any installed nodejs versions"
-        );
-      } else {
-        const versionPicked = await vscode.window.showQuickPick(versions);
-        setVersion(ctx, versionPicked);
-        return versionPicked;
+    async (args?: Args) => {
+      try {
+        const versions = await getNodeVersions(ctx, args && args.nvmDir);
+        if (!versions) {
+          vscode.window.showErrorMessage(
+            "Could not find any installed nodejs versions"
+          );
+        } else {
+          const versionPicked = await vscode.window.showQuickPick(versions);
+          setVersion(ctx, versionPicked);
+          return versionPicked;
+        }
+      } catch (e) {
+        vscode.window.showErrorMessage(e.message);
       }
     }
   );
