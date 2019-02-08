@@ -1,6 +1,6 @@
 {
-  "name": "vsc-node-version",
-  "displayName": "vsc-node-version",
+  "name": "vsc-nvm",
+  "displayName": "vsc-nvm",
   "description": "VSCode extension based NVM helper",
   "version": "0.0.1",
   "engines": {
@@ -24,11 +24,18 @@
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "yarn run compile && node ./node_modules/vscode/bin/test"
   },
+  "publisher": "henrynguyen5-vsc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HenryNguyen5/vsc-nvm"
+  },
+  "license": "MIT",
   "devDependencies": {
-    "typescript": "^3.3.1",
-    "vscode": "^1.1.28",
-    "tslint": "^5.12.1",
+    "@types/mocha": "^2.2.42",
     "@types/node": "^10.12.21",
-    "@types/mocha": "^2.2.42"
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.1",
+    "vsce": "^1.57.0",
+    "vscode": "^1.1.28"
   }
 }
