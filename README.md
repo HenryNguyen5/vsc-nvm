@@ -1,5 +1,5 @@
-# vsc-nvm README
-
+# README
+[Install here](https://marketplace.visualstudio.com/items?itemName=henrynguyen5-vsc.vsc-nvm)
 Simplyify your node versioning workflow with `nvm` and this extension.
 
 ## Features
