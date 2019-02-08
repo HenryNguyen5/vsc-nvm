@@ -8,7 +8,7 @@ Simplify your node versioning workflow with `nvm` and this extension.
 
 This extension simplifies nvm workflow by:
 
-- Automatically running `nvm use` on each terminal opened when an `.nvmrc` file exists in your workspace
+- Automatically running `nvm use` on each terminal opened when an `.nvmrc` file exists in your workspace. Inspired by [vscode-nvm](https://github.com/abumalick/vscode-nvm)
 - Providing a [command input hook](https://code.visualstudio.com/updates/v1_31#_custom-command-user-input-variables) to choose a version of node to run tasks against
 
 ## Requirements
