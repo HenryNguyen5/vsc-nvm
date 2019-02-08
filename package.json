@@ -10,7 +10,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.node-version"
+    "onCommand:extension.node-version",
+    "workspaceContains:.nvmrc"
   ],
   "main": "./out/extension.js",
   "contributes": {
