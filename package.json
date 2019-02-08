@@ -1,7 +1,7 @@
 {
   "name": "vsc-node-version",
   "displayName": "vsc-node-version",
-  "description": "Display node version subcommand",
+  "description": "VSCode extension based NVM helper",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.31.0"
